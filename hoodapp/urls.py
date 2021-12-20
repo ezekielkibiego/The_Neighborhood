@@ -5,7 +5,7 @@ from .import views
 
 
 urlpatterns = [
-    path('',views.index,name = 'index'),
+    path('',views.index ,name = 'index'),
     # path('profile/', views.profile, name='profile'),
     # path('accounts/profile/', views.index,name='index'),
     # path('project/project/', views.project, name = "project"),
