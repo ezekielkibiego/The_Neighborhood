@@ -1,3 +1,72 @@
 h1{
     color: red;
 }
+
+.overlay-content {
+    position: relative;
+    top: 5%;
+    width: 100%;
+    text-align: center;
+  
+  }
+  
+  .overlay a {
+  
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .overlay a:hover, .overlay a:focus {
+    color: #b31c6f;
+  }
+  
+  .overlay .closebtn {
+    position: absolute;
+    right: 45px;
+    font-size: 20px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px}
+    .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+    }
+  }
+  .bg-dark{
+    outline: none;
+    border: none;
+    background-color: #595d64;
+    border-radius: 3%;
+    color: white;
+
+  }
+
+  body {
+    font-family: 'Lato', global_font_string;
+    font-weight: 500;
+    background-color: #595d64;
+    color: #595d64;
+    }
+    
+    .overlay {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      /* background-image: url('https://image.freepik.com/free-vector/realistic-award-with-lights-golden-confetti-trophy-with-figurine-holding-star-illustration_1284-55118.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center; */
+      background-color: rgb(214, 16, 16);
+      background-color: rgba(37, 37, 34, 0.741);
+      overflow-x: hidden;
+      transition: 0.5s;
+    }
+    
