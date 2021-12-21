@@ -7,7 +7,7 @@ from .import views
 urlpatterns = [
     path('',views.index ,name = 'index'),
     # path('profile/', views.profile, name='profile'),
-    # path('accounts/profile/', views.index,name='index'),
+    path('accounts/profile/', views.index,name='index'),
     # path('project/project/', views.project, name = "project"),
     # path('search/', views.search_project, name='search'),
     path('create_profile/',views.create_profile,name = 'create_profile'),
