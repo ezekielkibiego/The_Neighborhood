@@ -8,10 +8,13 @@
     .hood{
         margin-top: 5%;
     }
+    .link{
+        margin-top: 3%;
+    }
 </style>
 <div class="container hood">
       <div class="hoods">
-        <h3 class="name">{{hood.name}}</h3>
+        <h3 class="text-center">{{hood.name}}</h3>
           <div class="row">
             <div class="col-md-6">
                 <img src="{{hood.photo.url}}"class="image">
@@ -25,11 +28,13 @@
                 <p>Founded: {{ hood.created_on|date }}</p>
                 <p>Updated: {{ hood.updated_on|date}}</p>
             </div>
-            <div>
-                <a href="{% url 'leave_hood' hood.id %}" class="btn btn-outline-danger btn-sm">Leave at will</a>
-            </div>
+            
             
         </div>
+        <div class="link">
+            <a href="{% url 'leave_hood' hood.id %}" class="btn btn-outline-danger btn-sm">Leave at will</a>
+        </div>
+        <h2 class="text-center">Businesses</h2>
         <div class="col-md-12">
             <div class="card m-3">
                 <table class="table">
