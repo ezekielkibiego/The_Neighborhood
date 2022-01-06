@@ -4,5 +4,43 @@
 <div class="container">
     <h1>The Neighborhood</h1>
 </div>
+<style>
+    .image{
+        height: auto;
+        width: 100%;
+    }
+    .hood{
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+</style>
+    <div class="container hood">
+        <div class="row">
+            {% for hoods in hood %}
+            <div class="col-md-6">
+                <img src="{{hoods.photo.url}}" alt="" class="image">
+            
+                
+                <h3 class="name">{{hoods.name}}</h3>
+                <p>{{hoods.members.count}} Member{{hoods.members.count|pluralize}}</p>
+                <p> {{ hoods.location }}</p>
+                
+                <p>{{ hoods.content }}</p>
+
+                {% if request.user.profile.neighborhood == hoods %}
+            <a href="{% url 'leave_hood' hoods.id %}" class="btn btn-outline-danger btn-sm">Leave at will</a>
+            
+            <a href="{%url 'single_hood' hoods.name %}" class="btn btn-outline-success btn-sm" style="float: right">Explore {{hoods.name}}
+          </a>
+            {% elif not request.user.profile.neighborhood %}
+            <a href="{% url 'join_hood' hoods.id %}" class="btn btn-info btn-sm">Join Hood</a>
+            {% endif %}
+            </div>
+            
+            {% endfor %}
+            
+            
+        </div>
+    </div>
 
 {% endblock %}
