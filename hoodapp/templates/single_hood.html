@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    .image{
+        height: auto;
+        width: 100%;
+    }
+    .hood{
+        margin-top: 5%;
+    }
+</style>
+<div class="container hood">
+      <div class="hoods">
+        <h3 class="name">{{hood.name}}</h3>
+          <div class="row">
+            <div class="col-md-6">
+                <img src="{{hood.photo.url}}"class="image">
+            </div>
+            <div class="col-md-6">
+                <h3 class="name">{{hoods.name}}</h3>
+                <p>{{hood.members.count}} Member{{hood.members.count|pluralize}}</p>
+                <p> {{ hood.location }}</p>
+                
+                <p>{{ hood.content }}</p>
+                <p>Founded: {{ hood.created_on|date }}</p>
+                <p>Updated: {{ hood.updated_on|date}}</p>
+            </div>
+            <div>
+                <a href="{% url 'leave_hood' hood.id %}" class="btn btn-outline-danger btn-sm">Leave at will</a>
+            </div>
+            
+        </div>
+        <div class="col-md-12">
+            <div class="card m-3">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Neighborhood</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for business in businesses %}
+                        <tr>
+                            <td>{{ business.business_name }}</td>
+                            <td>{{ business.email }}</td>
+                            <td>{{ business.location }}</td>
+                            <td>
+                                <span class="">
+                                    {{ business.neighborhood }}
+                                </span>
+                            </td>
+                            <td>{{ business.created_on|date }}</td>
+                            <td>
+    
+                                
+                                <a class="text-danger" href="">
+                                    <i class="fa fa-trash-alt text-danger"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center text-danger">No Businesses Created!</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+   
+</div>
+
+
+{% endblock %}
