@@ -15,10 +15,8 @@
         text-align: left;
         border-radius: 10%;
     }
-    .projects{
-        width: 100%;
-        height: auto;
-    }
+
+   
 </style>
 <br>
 <section class="profile container">
@@ -43,12 +41,12 @@
                         <span class="text-danger">No about me</span>
                         {% endif %}
                     </p>
-                    
+
                     <p>Contact: {{ profile.contact }}</p>
                     <p>Location: {{ profile.location }}</p>
                     <p>Neighborhood: {{ profile.neighborhood }}</p>
                     <h6>Joined on: <span class="badge rounded-pill bg-secondary text-white">
-                        {{ user.date_joined|date }} </span></h6>
+                            {{ user.date_joined|date }} </span></h6>
 
                 </div>
             </div>
@@ -66,16 +64,74 @@
                             </div>
                         </div>
                     </div>
-    
-                   
-                </div>
-                </div>
 
+
+                </div>
+            </div>
+
+        </div>
+
+        
+    </div>
+
+    <div>
+        <a href="{%url 'create_hood'  %}"  class="btn btn-outline-dark bg-dark text-white rounded-pill">
+         Create Neighborhood
+        </a>
+    </div>
+
+
+    <div>
+        <a href="{%url 'create_business'  %}"  class="btn btn-outline-dark bg-dark text-white rounded-pill">
+         Create Business
+        </a>
+    </div>
+    
+    <div class="col-md-12">
+        <div class="card m-3">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Neighborhood</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for business in businesses %}
+                    <tr>
+                        <td>{{ business.business_name }}</td>
+                        <td>{{ business.email }}</td>
+                        <td>{{ business.location }}</td>
+                        <td>
+                            <span class="">
+                                {{ business.neighborhood }}
+                            </span>
+                        </td>
+                        <td>{{ business.created_on|date }}</td>
+                        <td>
+
+                            
+                            <a class="text-danger" href="">
+                                <i class="fa fa-trash-alt text-danger"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center text-danger">No Businesses Created!</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 
-    
-    
-</section>
 
+    </div>
+    </div>
+</section>
 {% endblock %}
