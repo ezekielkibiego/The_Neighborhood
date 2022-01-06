@@ -87,7 +87,7 @@ def business(request):
         
         businesses = Business.objects.filter(user_id=current_user.id)
         
-        return render(request, "profile.html", {"danger": "Update Profile by selecting Your Neighbourhood name to continue 😥!!", "locations": locations, "neighborhood": neighborhood, "businesses": businesses})
+        return render(request, "profile.html", {"danger": "Update Profile", "locations": locations, "neighborhood": neighborhood, "businesses": businesses})
     else:
         neighborhood = profile.neighborhood
         businesses = Business.objects.filter(
