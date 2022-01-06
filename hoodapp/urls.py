@@ -8,12 +8,15 @@ urlpatterns = [
     path('',views.index ,name = 'index'),
     path('profile/', views.profile, name='profile'),
     path('accounts/profile/', views.index,name='index'),
-    # path('project/project/', views.project, name = "project"),
-    # path('search/', views.search_project, name='search'),
-    path('create_profile/',views.create_profile,name = 'create_profile'),
+    # path('create_profile/',views.create_profile,name = 'create_profile'),
     path('update_profile/<int:id>',views.update_profile, name='update_profile'),
-    # path("project/<int:project_id>/", views.project_details, name="project_details"),
-    # path("rate/<int:id>",views.rate, name='rate'),
-    # path('api/projects/', views.ProjectList.as_view()),
-    # path('api/profiles/',views.ProfileList.as_view()),
+    path("create_business", views.create_business, name="create_business"),
+    path("business/", views.business, name="business"),
+    path('create_hood',views.create_hood, name= 'create_hood'),
+    path('hood/', views.hood, name = 'hood'),
+    path('hood/<str:name>',views.single_hood,name='single_hood'),
+    path('join_hood/<int:id>', views.join_hood, name='join_hood'),
+    path('leave_hood/<int:id>', views.leave_hood, name='leave_hood'),
+    
+    
 ]
