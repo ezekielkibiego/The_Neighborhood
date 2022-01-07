@@ -1,5 +1,5 @@
 from django.db.models import fields
-from .models import Business, NeighborHood, Profile
+from .models import *
 from django.forms import ModelForm
 from django import forms
 
@@ -17,9 +17,14 @@ class UpdateProfileForm(forms.ModelForm):
 class HoodForm(forms.ModelForm):
     class Meta:
         model=NeighborHood
-        fields = ['photo','name','content','occupants_count','location']
+        fields = ['photo','name','content','location', 'health_cell','police_hotline']
 
 class BusinessForm(forms.ModelForm):
     class Meta:
         model=Business
-        fields=['business_name','email','description','location','neighborhood']
+        fields=['business_name','photo','email','description','location','neighborhood']
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields=['title','content','location','neighborhood']
