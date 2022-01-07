@@ -53,24 +53,23 @@
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
       <a class="navbar-brand" href="/" style=" color: white;"><i class="fa fa-home"
         aria-hidden="true"></i></a>
-        <div class="forms">
-            <form class=" form" role="search" action="">
-                <div class="input-group ">
-                    <input type="text" class="form-control" placeholder="Search"
-                        name="search">
-                    <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit"></button>
-                    </div>
-                </div>
-            </form>
-
-        </div>
+        
         <div class="">
             <div>
                 <a href="{%url 'hood'  %}" class="phots">
-                  Hood
+                  Hoods
                 </a>
             </div>
+        </div>
+        <div>
+            <a href="{%url 'posts'  %}" class="phots">
+              posts
+            </a>
+        </div>
+        <div>
+            <a href="{%url 'businesses'  %}" class="phots">
+              Businesses
+            </a>
         </div>
         <div class="">
             {% if user.is_authenticated %}
@@ -82,11 +81,11 @@
                 </a>
                 <ul class="dropdown-menu" role="menu" style=" text-decoration: none;">
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin" style=" color: black;">Dashboard</a>
+                    <li class="">
+                        <a class="btn btn-default" href="/admin" style=" color: black;">Dashboard</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/profile" style=" color: black;">{{ user.username }}</a>
+                    <li>
+                        <a class="btn btn-default" href="/profile" style=" color: black;">{{ user.username }}</a>
                     </li>
                     <li>
                         <a class='btn btn-default' href="/accounts/register">Register</a>
