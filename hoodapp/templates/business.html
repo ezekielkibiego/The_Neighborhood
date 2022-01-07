@@ -7,21 +7,22 @@
 <section class="blog-section" id="">
     <div class="container mt-5">
 
-        <div class="row ">
+        
 
             <h2 class="text-center headings">Businesses Within Your Neighborhood: <br>{{hood.name}}
             </h2>
-
+            <div class="row">
             
-            {% for business in businesses %}
-            <div class="col-md-12">
+            {% for biz in businesses %}
+            <div class="col-md-4">
                 <div class="card" >
                     <div class="card-body">
-                        <h5 class="card-title text-capitalize">{{ business.business_name }}</h5>
-                        <p>{{ business.description }}</p>
-                        <p>{{ business.neighborhood }}</p>
-                        <p>{{ business.location }}</p>
-                        <a href="malto:{{ business.email }}" class="card-link">Email: <span class="text-bold text-primary">{{ business.email }}</span> </a>
+                        <img src="{{biz.photo.url}}" alt="" style="border-radius: 50%; width: 50%; height: auto;">
+                        <h5 class="card-title text-capitalize">{{ biz.business_name }}</h5>
+                        <p>{{ biz.description }}</p>
+                        <p>{{ biz.neighborhood }}</p>
+                        <p>{{ biz.location }}</p>
+                        <a href="malto:{{ biz.email }}" class="card-link">Email: <span class="text-bold text-primary">{{ biz.email }}</span> </a>
                        <br>
                     </div>
                   </div>
