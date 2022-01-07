@@ -1,47 +1,49 @@
 {%extends "base.html"%}
 {% load bootstrap4 %}
 {% block content %}
-<div class="container hood">
-    <h1 class="text-center">The Neighborhood</h1>
-</div>
+
 <style>
-
-    .image{
-        height: auto;
-        width: 100%;
-    }
-    .hood{
+    .home {
+        background-image: url('https://thebusinessbreak.com/wp-content/uploads/2020/10/14500322_302717800104772_4204190222453-850x560.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
         margin-top: 5%;
-        margin-bottom: 5%;
+        height: 85vh;
     }
+    
 </style>
-    <div class="container hood">
-        <div class="row">
-            {% for hoods in hood %}
-            <div class="col-md-6">
-                <img src="{{hoods.photo.url}}" alt="" class="image">
-            
-                
-                <h3 class="name">{{hoods.name}}</h3>
-                <p>{{hoods.members.count}} Member{{hoods.members.count|pluralize}}</p>
-                <p> {{ hoods.location }}</p>
-                
-                <p>{{ hoods.content }}</p>
 
-                {% if request.user.profile.neighborhood == hoods %}
-            <a href="{% url 'leave_hood' hoods.id %}" class="btn btn-outline-danger btn-sm">Leave at will</a>
-            
-            <a href="{%url 'single_hood' hoods.name %}" class="btn btn-outline-success btn-sm" style="float: right">Explore {{hoods.name}}
-          </a>
-            {% elif not request.user.profile.neighborhood %}
-            <a href="{% url 'join_hood' hoods.id %}" class="btn btn-info btn-sm">Join Hood</a>
-            {% endif %}
-            </div>
-            
-            {% endfor %}
-            
-            
+<div class="container-fluid">
+
+    <div class="home">
+        <h1 class="text-center">Welcome to The Neighborhood</h1>
+        <div class="text-center">
+            <form action="/create_hood">
+                <input type="submit" class="btn btn-outline-dark bg-dark text-white rounded-pill b-text"
+                    value="Add Your Neighborhood" />
+            </form>
+
         </div>
-    </div>
+        <div class="" style=" margin: 5%; padding: 10%;">
 
+            <div class="forms">
+                <form class="me-auto search-form " target="_self" action="{% url 'search' %}">
+                    <div class="input-group ">
+
+                        <input type="text" class="form-control" placeholder="Search neighborhoods by name"
+                            name="search_term">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"
+                                    style="color: white;"></i></button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
 {% endblock %}
