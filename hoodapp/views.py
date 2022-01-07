@@ -2,7 +2,7 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from .models import *
-from hoodapp.forms import BusinessForm, HoodForm, ProfileForm, UpdateProfileForm
+from hoodapp.forms import *
 from hoodapp.models import Profile
 
 
@@ -33,8 +33,9 @@ def profile(request):
     current_user = request.user
     profile = Profile.objects.filter(user_id=current_user.id).first()
     neighborhood = NeighborHood.objects.all()
-    businesses = Business.objects.filter(user_id=current_user.id)
-    return render(request, "profile.html", {"profile": profile, ' neighborhood':  neighborhood, 'businesses': businesses})
+    businesses = Business.objects.all().order_by('-id')
+    posts = Post.objects.filter(user_id=current_user.id)
+    return render(request, "profile.html", {"profile": profile, ' neighborhood':  neighborhood, 'businesses': businesses,"posts": posts})
 
 
 @login_required(login_url='/accounts/login/')
@@ -58,23 +59,25 @@ def create_business(request):
     current_user = request.user
     if request.method == "POST":
         
-        b_form=BusinessForm(request.POST,request.FILES)
+        form=BusinessForm(request.POST,request.FILES)
 
-        if b_form.is_valid():
-            business=b_form.save(commit=False)
+        if form.is_valid():
+            business=form.save(commit=False)
             business.user=current_user
+            business.hood= hood
             business.save()
-        return HttpResponseRedirect('/business')
+        return HttpResponseRedirect('/businesses')
     else:
-        b_form=BusinessForm()
-    return render (request,'create_business.html', {'b_form': b_form, 'profile': profile})
+        form=BusinessForm()
+    return render (request,'create_business.html', {'form': form, 'profile': profile})
 
 
 
 
 @login_required(login_url="/accounts/login/")
-def business(request):
+def businesses(request):
     current_user = request.user
+    businesses = Business.objects.all().order_by('-id')
     
     profile = Profile.objects.filter(user_id=current_user.id).first()
 
@@ -85,13 +88,12 @@ def business(request):
         locations = Location.objects.all()
         neighborhood = NeighborHood.objects.all()
         
-        businesses = Business.objects.filter(user_id=current_user.id)
+        businesses = Business.objects.all().order_by('-id')
         
         return render(request, "profile.html", {"danger": "Update Profile", "locations": locations, "neighborhood": neighborhood, "businesses": businesses})
     else:
         neighborhood = profile.neighborhood
-        businesses = Business.objects.filter(
-            neighborhood=profile.neighborhood)
+        businesses = Business.objects.all().order_by('-id')
         return render(request, "business.html", {"businesses": businesses})
 
 @login_required(login_url="/accounts/login/")
@@ -120,11 +122,11 @@ def single_hood(request,name):
     current_user = request.user
     hood = NeighborHood.objects.get(name=name)
     businesses = Business.objects.filter(user_id=current_user.id)
-    return render(request,'single_hood.html',{'hood':hood,'businesses': businesses})
+    posts = Post.objects.filter(user_id=current_user.id)
+    return render(request,'single_hood.html',{'hood':hood,'businesses': businesses,"posts": posts})
 
 def join_hood(request,id):
     neighborhood = get_object_or_404(NeighborHood, id=id)
-    
     request.user.profile.neighborhood = neighborhood
     request.user.profile.save()
     return redirect('hood')
@@ -134,3 +136,51 @@ def leave_hood(request, id):
     request.user.profile.neighborhood = None
     request.user.profile.save()
     return redirect('hood')    
+
+login_required(login_url="/accounts/login/")
+def create_post(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.hood = hood
+            post.user=current_user
+            post.save()
+            return redirect('/posts')
+    else:
+        form = PostForm()
+    return render(request, 'post.html', {'form': form})
+
+
+def posts(request):
+    current_user = request.user
+    profile = Profile.objects.filter(user_id=current_user.id).first()
+    posts = Post.objects.filter(user_id=current_user.id)
+    if profile is None:
+        profile = Profile.objects.filter(
+            user_id=current_user.id).first() 
+        posts = Post.objects.filter(user_id=current_user.id)
+        
+        locations = Location.objects.all()
+        neighborhood = NeighborHood.objects.all()
+        
+        businesses = Business.objects.filter(user_id=current_user.id)
+        
+        return render(request, "profile.html", {"danger": "Update Profile ", "locations": locations, "neighborhood": neighborhood,  "businesses": businesses,"posts": posts})
+    else:
+        neighborhood = profile.neighborhood
+        posts = Post.objects.filter(user_id=current_user.id)
+        return render(request, "posts.html", {"posts": posts})
+
+@login_required(login_url="/accounts/login/")
+def search(request):
+    if 'search_term' in request.GET and request.GET["search_term"]:
+        search_term = request.GET.get("search_term")
+        searched_hood = NeighborHood.objects.filter(name__icontains=search_term)
+        message = f"Search For: {search_term}"
+
+        return render(request, "search.html", {"message": message, "hood": searched_hood})
+    else:
+        message = "You haven't searched for any term"
+        return render(request, "search.html", {"message": message})
