@@ -84,9 +84,9 @@ class Post(models.Model):
     title = models.CharField(max_length=50,null=True)
     content = models.TextField(blank=True, null=True)
     photo = CloudinaryField("image",blank=True,null=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
     location = models.ForeignKey(Location, on_delete=models.CASCADE,null=True)
-    neighborhood = models.ForeignKey(NeighborHood, on_delete=models.CASCADE, default=1)
+    neighborhood = models.ForeignKey(NeighborHood, on_delete=models.CASCADE, null=True)
     created_on = models.DateTimeField(auto_now_add=True,null=True)
     updated_on = models.DateTimeField(auto_now=True,null=True)
     
