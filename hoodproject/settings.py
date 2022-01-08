@@ -16,6 +16,7 @@ from decouple import config,Csv
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+import django_heroku
 
 
 MODE=config("MODE", default="dev")
@@ -61,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -145,7 +147,12 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 
 ]
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+django_heroku.settings(locals())
