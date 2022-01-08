@@ -7,7 +7,7 @@
     color: whitesmoke;
     }
     .nav-link{
-        margin-left: 90%;
+        margin-left: 85%;
     }
     .sidenav {
       height: 100%;
@@ -76,6 +76,7 @@
         </div>
         <div class="">
             {% if user.is_authenticated %}
+            
 
             <li class="dropdown btn btn-default">
                 <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown"><i
@@ -99,6 +100,7 @@
                     </li>
                 </ul>
             </li>
+            
 
             {% else %}
             <li>
@@ -113,8 +115,9 @@
     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
     
     <a class="nav-link text-white" href="/profile" style=" color: black;" >
-      {% if profile.profile_photo %}
-      <img src="{{profile.profile_photo.url}}" alt="" style="border-radius: 50%; width: 50%; height: auto;">
+      
+      {% if user.is_authenticated %}
+      <img src="{{user.profile.profile_photo.url}}" alt="" style="border-radius: 50%; width: 20%; height: auto;"> &nbsp; <span class="text-white">{{user.username|title}}</span>
       {%else%}
       <img src="https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg"
           class="card-img-top" alt="My profile picture" style="border-radius: 50%; width: 50%; height: auto;">
