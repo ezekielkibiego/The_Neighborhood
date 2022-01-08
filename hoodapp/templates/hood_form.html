@@ -1,7 +1,22 @@
 {%extends 'registration/base.html'%}
+{% load static %}
 {% load bootstrap4 %}
-{% load static%}
-{% block content%}
+{% block styles %}
+{{ block.super}}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+<style>
+    body{
+    font-family: 'Lato', global_font_string;
+    font-weight: 500;
+    background-color: #595d64;
+    color: whitesmoke;
+    }
+    
+</style>
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
