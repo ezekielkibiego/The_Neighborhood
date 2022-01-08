@@ -32,4 +32,17 @@ class PostTestClass(TestCase):
         posts = Post.objects.all()
         self.assertTrue(len(posts) > 0)
 
+    def test_delete_method(self):
+        self.post.save()
+        self.post.delete_post()
+        posts = Post.objects.all()
+        self.assertTrue(len(posts) == 0)
+
+class BusinessTestClass(TestCase):
+    def setUp(self):
+        self.business = Business(business_name='Test Business')
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.business, Business))
+
     
