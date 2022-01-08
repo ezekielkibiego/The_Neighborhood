@@ -2,16 +2,24 @@
 
 {% block content %}
 <style>
-   
+   body{
+    font-family: 'Lato', global_font_string;
+    font-weight: 500;
+    background-color: #081c15;
+    color: whitesmoke;
+    }
+    .biz{
+        color: black;
+    }
 </style>
 <section class="blog-section" id="">
-    <div class="container mt-5">
+    <div class="container mt-5 ">
 
         
 
             <h2 class="text-center headings">Businesses Within Your Neighborhood: <br>{{hood.name}}
             </h2>
-            <div class="row">
+            <div class="row biz">
             
             {% for biz in businesses %}
             <div class="col-md-4">
