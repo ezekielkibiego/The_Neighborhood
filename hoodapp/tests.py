@@ -50,4 +50,8 @@ class BusinessTestClass(TestCase):
         businesses = Business.objects.all()
         self.assertTrue(len(businesses) > 0)
 
-    
+    def test_delete_method(self):
+        self.business.save()
+        self.business.delete_business()
+        businesses = Business.objects.all()
+        self.assertTrue(len(businesses) == 0)
