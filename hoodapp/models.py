@@ -120,9 +120,9 @@ class Business(models.Model):
     business_name = models.CharField(max_length=50)
     email = models.EmailField(max_length=50)
     description = models.TextField(blank=True, null=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
     location = models.ForeignKey(Location, on_delete=models.CASCADE,null=True)
-    neighborhood = models.ForeignKey(NeighborHood, on_delete=models.CASCADE)
+    neighborhood = models.ForeignKey(NeighborHood, on_delete=models.CASCADE,null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
