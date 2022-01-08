@@ -27,4 +27,9 @@ class PostTestClass(TestCase):
     def test_instance(self):
         self.assertTrue(isinstance(self.post, Post))
 
+    def test_save_method(self):
+        self.post.save()
+        posts = Post.objects.all()
+        self.assertTrue(len(posts) > 0)
+
     
