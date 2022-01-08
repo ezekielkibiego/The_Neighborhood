@@ -45,4 +45,9 @@ class BusinessTestClass(TestCase):
     def test_instance(self):
         self.assertTrue(isinstance(self.business, Business))
 
+    def test_save_method(self):
+        self.business.save()
+        businesses = Business.objects.all()
+        self.assertTrue(len(businesses) > 0)
+
     
