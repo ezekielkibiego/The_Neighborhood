@@ -21,6 +21,11 @@
     }
 </style>
     <div class="container hood">
+        <div class="text-center mb-3">
+            <a href="{%url 'create_hood'  %}"  class="btn btn-outline-dark bg-dark text-white rounded-pill">
+             Add New Hood
+            </a>
+        </div>
         <div class="row">
             {% for hoods in hood %}
             <div class="col-md-6">
