@@ -31,33 +31,26 @@ class NeighborHood(models.Model):
     health_cell = models.IntegerField(null=True, blank=True)
     police_hotline = models.IntegerField(null=True, blank=True)
 
-    def create_neigborhood(self):
-        self.save()
-    
-    def update_neighborhood(self):
-        self.update()
-
-
-    @classmethod
-    def delete_neighborhood(cls, id):
-        cls.objects.filter(id=id).delete()
-
-    @classmethod
-    def update_neighborhood(cls, id):
-        cls.objects.filter(id=id).update()
-
-    @classmethod
-    def search_by_name(cls, search_term):
-        hood = cls.objects.filter(name__icontains=search_term)
-        return hood
-
-    @classmethod
-    def find_neigborhood(cls, id):
-        hood = cls.objects.get(id=id)
-        return hood
+    class Meta:
+        ordering = ['-pk']
 
     def __str__(self):
-        return self.name
+        return f'{self.name} hood'
+
+    def create_neighborhood(self):
+        self.save()
+
+    def delete_neighborhood(self):
+        self.delete()
+        
+    def update_neighborhood(self):
+        self.update()
+    def update_occupants(self):
+        self.update()
+
+    @classmethod
+    def find_neighborhood(cls, neighborhood_id):
+        return cls.objects.filter(id=neighborhood_id)
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile',null=True)
     profile_photo = CloudinaryField("image",null=True)
@@ -90,6 +83,16 @@ class Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True,null=True)
     updated_on = models.DateTimeField(auto_now=True,null=True)
     
+    class Meta:
+        ordering = ['-pk']
+        
+    def __str__(self):
+        return f'{self.title} Post'
+    
+    def delete_post(self):
+        self.delete()
+    
+
     def create_post(self):
         self.save()
 
@@ -102,19 +105,7 @@ class Post(models.Model):
         self.update()
 
     
-    @classmethod
-    def search_by_title(cls, search_term):
-        post = cls.objects.filter(title__icontains=search_term)
-        return post
-
     
-    @classmethod
-    def find_post(cls, id):
-        post = cls.objects.get(id=id)
-        return post
-
-    def __str__(self):
-        return self.title
 class Business(models.Model):
     photo = CloudinaryField("image",null=True)
     name = models.CharField(max_length=50)
@@ -125,6 +116,12 @@ class Business(models.Model):
     neighborhood = models.ForeignKey(NeighborHood, on_delete=models.CASCADE,null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-pk']
+
+    def __str__(self):
+        return f'{self.name} Business'
 
     def create_business(self):
         self.save()
@@ -146,5 +143,5 @@ class Business(models.Model):
         return business
 
     def __str__(self):
-        return self.business_name
+        return self.name
 
