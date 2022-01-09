@@ -7,7 +7,7 @@ from hoodapp.models import Profile
 
 
 
-@login_required(login_url="/accounts/login/")
+
 def index(request):
     hood = NeighborHood.objects.all().order_by('-id')
     return render(request, 'index.html',{'hood': hood})
@@ -124,13 +124,14 @@ def single_hood(request,name):
     businesses = Business.objects.filter(user_id=current_user.id)
     posts = Post.objects.filter(user_id=current_user.id)
     return render(request,'single_hood.html',{'hood':hood,'businesses': businesses,"posts": posts})
-
+login_required(login_url="/accounts/login/")
 def join_hood(request,id):
     neighborhood = get_object_or_404(NeighborHood, id=id)
     request.user.profile.neighborhood = neighborhood
     request.user.profile.save()
     return redirect('hood')
 
+login_required(login_url="/accounts/login/")
 def leave_hood(request, id):
     hood = get_object_or_404(NeighborHood, id=id)
     request.user.profile.neighborhood = None
@@ -152,7 +153,7 @@ def create_post(request):
         form = PostForm()
     return render(request, 'post.html', {'form': form})
 
-
+login_required(login_url="/accounts/login/")
 def posts(request):
     current_user = request.user
     profile = Profile.objects.filter(user_id=current_user.id).first()
