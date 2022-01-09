@@ -68,7 +68,7 @@ class Profile(models.Model):
     created_on = models.DateTimeField(auto_now_add=True,null=True)
     updated_on = models.DateTimeField(auto_now=True,null=True)
 
-    def _str_(self):
+    def __str__(self):
         return f'{self.user.username} profile'
 
     @receiver(post_save, sender=User)
