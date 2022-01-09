@@ -40,7 +40,7 @@ class PostTestClass(TestCase):
 
 class BusinessTestClass(TestCase):
     def setUp(self):
-        self.business = Business(business_name='Test Business')
+        self.business = Business(name='Test Business')
 
     def test_instance(self):
         self.assertTrue(isinstance(self.business, Business))
