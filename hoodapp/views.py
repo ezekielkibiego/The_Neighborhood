@@ -78,23 +78,23 @@ def create_business(request):
 @login_required(login_url="/accounts/login/")
 def businesses(request):
     current_user = request.user
-    businesses = Business.objects.all().order_by('-id')
-    
     profile = Profile.objects.filter(user_id=current_user.id).first()
+    businesses = Business.objects.filter(user_id=current_user.id)
 
     if profile is None:
         profile = Profile.objects.filter(
             user_id=current_user.id).first()
+        businesses = Business.objects.filter(user_id=current_user.id)
         
         locations = Location.objects.all()
         neighborhood = NeighborHood.objects.all()
         
-        businesses = Business.objects.all().order_by('-id')
+        
         
         return render(request, "profile.html", {"danger": "Update Profile", "locations": locations, "neighborhood": neighborhood, "businesses": businesses})
     else:
         neighborhood = profile.neighborhood
-        businesses = Business.objects.all().order_by('-id')
+        businesses = Business.objects.filter(user_id=current_user.id)
         return render(request, "business.html", {"businesses": businesses})
 
 @login_required(login_url="/accounts/login/")

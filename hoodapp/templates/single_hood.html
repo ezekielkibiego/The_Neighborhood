@@ -20,32 +20,36 @@
     .pro{
         color: black;
     }
+    h2{
+        font-style: italic;
+    }
 </style>
 <div class="container-fluid hood">
       <div class="hoods">
-        <h3 class="text-center">{{hood.name}}</h3>
+        <h2 class="text-center mb-5 b-text ">{{hood.name}}, {{ hood.location }}</h2>
+        <h3 class="text-center"> Health Center Contact: {{ hood.health_cell }}</h3>
+        <h3 class="text-center">Police  Hotline: {{ hood.police_hotline }}</h3>
           <div class="row">
             <div class="col-md-6">
                 <img src="{{hood.photo.url}}"class="image">
             </div>
-            <div class="col-md-6">
-                <h3 class="name">{{hoods.name}}</h3>
+            <div class="col-md-3 mt-5">
+                
                 <p>{{hood.members.count}} Member{{hood.members.count|pluralize}}</p>
-                <p> {{ hood.location }}</p>
+                
                 
                 <p>{{ hood.content }}</p>
-                <p>Health Center Contact: {{ hood.health_cell }}</p>
-                <p>Police_hotline: {{ hood.police_hotline }}</p>
+                
                 <p>Founded: {{ hood.created_on|date }}</p>
                 <p>Updated: {{ hood.updated_on|date}}</p>
             </div>
             
-            
+            <div class="col-md-3 mt-5 link">
+                <a href="{% url 'leave_hood' hood.id %}" class="btn btn-outline-danger btn-sm">Leave Hood</a>
+            </div>
         </div>
-        <div class="link">
-            <a href="{% url 'leave_hood' hood.id %}" class="btn btn-outline-danger btn-sm">Leave at will</a>
-        </div>
-        <h2 class="text-center">Businesses</h2>
+        
+        <h2 class="text-center">Businesses in This Neighborhood</h2>
         <div class="col-md-12">
             <div class="card m-3">
                 <table class="table">
@@ -96,7 +100,7 @@
         </div>
         
     </div>
-    <h2 class="text-center">Posts</h2>
+    <h2 class="text-center">Posts in This Neighborhood</h2>
     <div class="col-md-12 links">
         <div class="card">
             <table class="table">
@@ -133,8 +137,8 @@
                 </table>
             </div>
         </div>
-        <div class="container pt-4 mb-3 pro">
-            <h3 class="text-center mt-3 text-white">Hood Members</h3>
+        <div class="container-fluid pt-4 mb-3 pro">
+            <h2 class="text-center mt-3 text-white">Hood Members</h2>
             {% for pro in profiles %}
             {% if pro.profile_photo %}
             <div class="card p-3">

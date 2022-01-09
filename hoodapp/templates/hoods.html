@@ -32,22 +32,18 @@
                 <img src="{{hoods.photo.url}}" alt="" class="image">
             
                 
-                <h3 class="name">{{hoods.name}}</h3>
+                <h3 class="name">{{hoods.name}} , {{ hoods.location }}</h3>
                 <p>{{hoods.members.count}} Member{{hoods.members.count|pluralize}}</p>
-                <p> {{ hoods.location }}</p>
+                
                 <p>{{ hoods.content }}</p>
-                <p>Health Center Contact: {{ hoods.health_cell }}</p>
-                <p>Police_hotline: {{ hoods.police_hotline }}</p>
-                <p>Founded: {{ hoods.created_on|date }}</p>
-                <p>Updated: {{ hoods.updated_on|date}}</p>
-
+                
                 {% if request.user.profile.neighborhood == hoods %}
             <a href="{% url 'leave_hood' hoods.id %}" class="btn btn-outline-danger btn-sm">Leave at will</a>
             
-            <a href="{%url 'single_hood' hoods.name %}" class="btn btn-outline-success btn-sm" style="float: right">Explore {{hoods.name}}
+            
           </a>
             {% elif not request.user.profile.neighborhood %}
-            <a href="{% url 'join_hood' hoods.id %}" class="btn btn-info btn-sm">Join Hood</a>
+            <a href="{% url 'single_hood' hoods.name %}" class="btn btn-info btn-sm">Join Hood</a>
             {% endif %}
             </div>
             

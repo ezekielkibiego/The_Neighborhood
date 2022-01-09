@@ -95,12 +95,7 @@ class Post(models.Model):
 
     def create_post(self):
         self.save()
-
-    
-    def delete_post(self):
-        self.delete()
-
-    
+        
     def update_post(self):
         self.update()
 
@@ -142,6 +137,4 @@ class Business(models.Model):
         business = cls.objects.get(id=id)
         return business
 
-    def __str__(self):
-        return self.name
-
+  
