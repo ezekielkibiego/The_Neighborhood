@@ -14,10 +14,15 @@
 </style>
 <section class="blog-section" id="">
     <div class="container mt-5 ">
+        <div class="text-center mb-3">
+            <a href="{%url 'create_business'  %}"  class="btn btn-outline-dark bg-dark text-white rounded-pill">
+             Add New Business
+            </a>
+        </div>
 
         
 
-            <h2 class="text-center headings">Businesses Within Your Neighborhood: <br>{{hood.name}}
+            <h2 class="text-center headings">All Businesses
             </h2>
             <div class="row biz">
             
@@ -30,7 +35,7 @@
                         <p>{{ biz.description }}</p>
                         <p>{{ biz.neighborhood }}</p>
                         <p>{{ biz.location }}</p>
-                        <a href="malto:{{ biz.email }}" class="card-link">Email: <span class="text-bold text-primary">{{ biz.email }}</span> </a>
+                        <a href="mailto: {{ biz.email }}" class="card-link"  target="_blank">Email: <span class="text-bold text-primary">{{ biz.email }}</span> </a>
                        <br>
                     </div>
                   </div>
