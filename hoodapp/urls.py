@@ -20,7 +20,7 @@ urlpatterns = [
     path("create_post", views.create_post, name="create_post"), 
     path("posts/", views.posts, name="posts"),
     path("search/", views.search, name="search"),
-    
-    
+    path('profiles/', views.profiles, name = 'profiles'),
+
     
 ]
