@@ -16,45 +16,40 @@
     background-color: #081c15;
     color: whitesmoke;
     }
+    .biz{
+        color: black;
+    }
 </style>
 
 <div class="container ser">
     <h2 class="text-center mb-5">Your search results</h2>
 
-    <div class="row">
+    <div class="row biz">
 
 
-        {% for hoods in hood %}
-        <div class="col-md-6">
-            <img src="{{hoods.photo.url}}" alt="" class="image">
-            <h3 class="name">{{hoods.name}}</h3>
-            <p>{{hoods.members.count}} Member{{hoods.members.count|pluralize}}</p>
-            <p> {{ hoods.location }}</p>
-            <p>{{ hoods.content }}</p>
-            <p>Health Center Contact: {{ hoods.health_cell }}</p>
-            <p>Police_hotline: {{ hoods.police_hotline }}</p>
-            <p>Founded: {{ hoods.created_on|date }}</p>
-            <p>Updated: {{ hoods.updated_on|date}}</p>
-
-            {% if request.user.profile.neighborhood == hoods %}
-            <a href="{% url 'leave_hood' hoods.id %}" class="btn btn-outline-danger btn-sm">Leave at will</a>
-
-            <a href="{%url 'single_hood' hoods.name %}" class="btn btn-outline-success btn-sm"
-                style="float: right">Explore {{hoods.name}}
-            </a>
-            {% elif not request.user.profile.neighborhood %}
-            <a href="{% url 'join_hood' hoods.id %}" class="btn btn-info btn-sm">Join Hood</a>
-            {% endif %}
-        </div>
-
-        {% empty %}
-        <div class="col-md-12">
-            <div class="alert alert-danger" role="alert">
-                <h4 class="alert-heading">Oops!</h4>
-                <p>No results found for your search term.</p>
+        {% for biz in businesses %}
+            <div class="col-md-4">
+                <div class="card" >
+                    <div class="card-body">
+                        <img src="{{biz.photo.url}}" alt="" style="border-radius: 50%; width: 50%; height: auto;">
+                        <h5 class="card-title text-capitalize">{{ biz.name }}</h5>
+                        <p>{{ biz.description }}</p>
+                        <p>{{ biz.neighborhood }}</p>
+                        <p>{{ biz.location }}</p>
+                        <a href="malto:{{ biz.email }}" class="card-link">Email: <span class="text-bold text-primary">{{ biz.email }}</span> </a>
+                       <br>
+                    </div>
+                  </div>
             </div>
-        </div>
-        {% endfor %}
+
+            {% empty %}
+            <div class="col-md-12">
+                <div class="card mb-4 post-card">
+                    <div class="card-body text-center">
+                        <h6 class="fade-item mb-2 text-danger">No businesses found within your Neighborhood!!</h6>
+                    </div>
+                </div>
+            {% endfor %}
 
 
 
