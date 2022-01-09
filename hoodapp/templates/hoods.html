@@ -29,8 +29,8 @@
         <div class="row">
             {% for hoods in hood %}
             <div class="col-md-6">
-                <img src="{{hoods.photo.url}}" alt="" class="image">
-            
+                
+                <a href="{% url 'single_hood' hoods.name %}" class="btn btn-info btn-sm"><img src="{{hoods.photo.url}}" alt="" class="image"></a>
                 
                 <h3 class="name">{{hoods.name}} , {{ hoods.location }}</h3>
                 <p>{{hoods.members.count}} Member{{hoods.members.count|pluralize}}</p>
