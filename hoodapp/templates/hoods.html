@@ -40,16 +40,14 @@
                 {% if request.user.profile.neighborhood == hoods %}
             <a href="{% url 'leave_hood' hoods.id %}" class="btn btn-outline-danger btn-sm">Leave at will</a>
             
-            
+            <a href="{%url 'single_hood' hoods.name %}" class="btn btn-outline-success btn-sm" style="float: right">Explore {{hoods.name}}
           </a>
             {% elif not request.user.profile.neighborhood %}
-            <a href="{% url 'single_hood' hoods.name %}" class="btn btn-info btn-sm mb-3">Join Hood</a>
+            <a href="{% url 'single_hood' hoods.name %}" class="btn btn-info btn-sm">Join Hood</a>
             {% endif %}
             </div>
             
             {% endfor %}
-            <br>
         </div>
-        <br>
     </div>
 {% endblock %}

@@ -47,10 +47,16 @@
             <div class="col-md-3 mt-5 link">
                 <a href="{% url 'leave_hood' hood.id %}" class="btn btn-outline-danger btn-sm">Leave Hood</a>
             </div>
+
         </div>
         
         <h2 class="text-center">Businesses in This Neighborhood</h2>
         <div class="col-md-12">
+            <div class="col-md-6">
+                <a href="{%url 'create_business'  %}"  class="btn btn-outline-dark bg-dark text-white rounded-pill">
+                 Add Business
+                </a>
+            </div>
             <div class="card m-3">
                 <table class="table">
                     <thead>
@@ -102,6 +108,12 @@
     </div>
     <h2 class="text-center">Posts in This Neighborhood</h2>
     <div class="col-md-12 links">
+        <div class="col-md-6">
+            <a href="{%url 'create_post'  %}"  class="btn btn-outline-dark bg-dark text-white rounded-pill">
+             Add Post
+            </a>
+        </div>
+        <br>
         <div class="card">
             <table class="table">
                 <thead>
