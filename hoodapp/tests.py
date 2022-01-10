@@ -2,6 +2,7 @@ from django.test import TestCase
 from .models import *
 from django.contrib.auth.models import User
 
+
 class LocationTestClass(TestCase):
     def setUp(self):
         self.location = Location(name='Test Location')
@@ -20,6 +21,25 @@ class LocationTestClass(TestCase):
         locations = Location.objects.all()
         self.assertTrue(len(locations) == 0)
 
+class NeighborhoodTestClass(TestCase):
+    def setUp(self):
+        self.wajir = NeighborHood(name='la casa')
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.wajir, NeighborHood))
+
+    def tearDown(self):
+        NeighborHood.objects.all().delete()
+
+    def test_save_method(self):
+        self.wajir.create_neighborhood()
+        hood = NeighborHood.objects.all()
+        self.assertTrue(len(hood)>0)
+
+    def test_delete_method(self):
+        self.wajir.delete_neighborhood('1')
+        hood = NeighborHood.objects.all()
+        self.assertTrue(len(hood)==0)
 class PostTestClass(TestCase):
     def setUp(self):
         self.post = Post(title='Test Post')

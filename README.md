@@ -18,37 +18,51 @@ https://theneighborhoods.herokuapp.com/
 ### Landing Page
 <img src="static/images/home.png">
 
-### Register Form
+### Hoods Page
 
-<img src="static/images/reg.png">
+<img src="static/images/hood.png">
 
 ### Create Profile Form
 
-<img src="static/images/create.png">
+<img src="static/images/prof_form.png">
 
 ### Login Form
 
 <img src="static/images/login.png">
 
-### Home Page
+### Single Hood Page
 
-<img src="static/images/home2.png">
+<img src="static/images/single_hood1.png">
+<img src="static/images/single_hood2.png">
+<img src="static/images/single_hood3.png">
 
 ### Navbar Page
 
-<img src="static/images/nav.png">
+<img src="static/images/navbar.png">
 
-### Search Hoods Page
+### All Businesses Page
+
+<img src="static/images/bizes.png">
+
+### All Posts Page
+
+<img src="static/images/posts.png">
+
+### All Profiles Page
+
+<img src="static/images/profile.png">
+
+### Search Business Page
 
 <img src="static/images/search.png">
 
 ### User Profile Page
 
-<img src="static/images/profile.png">
+<img src="static/images/prof.png">
 
-### Update Profile Form
+### Update Post Form
 
-<img src="static/images/edit.png">
+<img src="static/images/post_form.png">
 
 ## Setup and Installation  
   
