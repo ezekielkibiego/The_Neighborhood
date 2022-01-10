@@ -34,7 +34,7 @@ def profile(request):
     profile = Profile.objects.filter(user_id=current_user.id).first()
     
     neighborhood = NeighborHood.objects.all()
-    businesses = Business.objects.all().order_by('-id')
+    businesses = Business.objects.filter(user_id=current_user.id)
     posts = Post.objects.filter(user_id=current_user.id)
     return render(request, "profile.html", {"profile": profile, ' neighborhood':  neighborhood, 'businesses': businesses,"posts": posts,})
 
