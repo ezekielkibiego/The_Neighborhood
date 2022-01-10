@@ -169,7 +169,7 @@ def posts(request):
     if profile is None:
         profile = Profile.objects.filter(
             user_id=current_user.id).first() 
-        posts = Post.objects.filter(user_id=current_user.id)
+        posts = Post.objects.all().order_by('-id')
         
         locations = Location.objects.all()
         neighborhood = NeighborHood.objects.all()
@@ -179,7 +179,7 @@ def posts(request):
         return render(request, "profile.html", {"danger": "Update Profile ", "locations": locations, "neighborhood": neighborhood,  "businesses": businesses,"posts": posts})
     else:
         neighborhood = profile.neighborhood
-        posts = Post.objects.filter(user_id=current_user.id)
+        posts = Post.objects.all().order_by('-id')
         return render(request, "posts.html", {"posts": posts})
 
 @login_required(login_url="/accounts/login/")
