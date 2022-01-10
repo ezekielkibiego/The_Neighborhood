@@ -31,13 +31,20 @@
             <div class="col-md-12">
                 <div class="card" >
                     <div class="card-body">
-                        <img src="{{biz.photo.url}}" alt="" style="border-radius: 50%; width: 50%; height: auto;">
-                        <h5 class="card-title text-capitalize">{{ biz.name }}</h5>
-                        <p>{{ biz.description }}</p>
-                        <p>{{ biz.neighborhood }}</p>
-                        <p>{{ biz.location }}</p>
-                        <a href="malto:{{ biz.email }}" class="card-link">Email: <span class="text-bold text-primary">{{ biz.email }}</span> </a>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="{{biz.photo.url}}" alt="" style="border-radius: 10%; width: 100%; height: auto;">
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="card-title text-capitalize">{{ biz.name }}</h5>
+                                <p>{{ biz.description }}</p>
+                                <p>{{ biz.neighborhood }}</p>
+                                <p>{{ biz.location }}</p>
+                                <a href="malto:{{ biz.email }}" class="card-link">Email: <span class="text-bold text-primary">{{ biz.email }}</span> </a>
+                            </div>
+                        
                        <br>
+                        </div>
                     </div>
                   </div>
             </div>
