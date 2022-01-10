@@ -13,20 +13,17 @@
     color: whitesmoke;
     
     }
+    p{
+        color: whitesmoke;
+        font-size: xx-large;
+    }
 </style>
 
 <div class="container-fluid">
 
     <div class="home">
         <h1 class="text-center mt-5">Welcome to The Neighborhood</h1>
-        <div class="text-center">
-            <form action="/create_hood">
-                <input type="submit" class="btn btn-outline-dark bg-#495867 text-white rounded-pill b-text"
-                    value="Add Your Neighborhood" />
-            </form>
-
-        </div>
-        <div class="" style=" margin: 7%; padding: 9%;">
+        <div class="" style=" margin: 2%; padding: 5%;">
 
             <div class="forms">
                 <form class="me-auto search-form " target="_self" action="{% url 'search' %}">
@@ -43,6 +40,23 @@
 
             </div>
         </div>
+        <div class="text-center">
+            
+            
+            <p>Strip the proud nobility of their bloated estates, <br> reduce them to a level with plain republicans, <br>
+                send forth to labor, and teach their children to enter the workshops or handle the plow,<br> and you will thus humble proud traitors.
+    
+               </p> 
+           <h3>~ Thaddeus Stevens</h3>
+
+           <form action="/create_hood" class="mb-3">
+            <input type="submit" class="btn btn-outline-dark bg-#495867 text-white rounded-pill b-text"
+                value="Add Your Neighborhood" />
+           </form>
+
+        </div>
+        
+        
 
 
     </div>
